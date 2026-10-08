@@ -8,3 +8,10 @@ CREATE TABLE IF NOT EXISTS staging.raw_games (
     loaded_at    timestamptz NOT NULL DEFAULT now(),
     PRIMARY KEY (source, game_id)
 );
+
+-- Estado del ETL: hasta qué mes se cargó cada fuente.
+CREATE TABLE IF NOT EXISTS etl_state (
+    source     text        PRIMARY KEY,
+    last_month text        NOT NULL,  -- formato 'YYYY-MM'
+    updated_at timestamptz NOT NULL DEFAULT now()
+);
